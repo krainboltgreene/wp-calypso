@@ -37,11 +37,17 @@
 		}
 
 		.manage-purchase__detail {
-			height: 40px;
+			width: 25%;
 		}
 
 		.manage-purchase__detail-label {
 			margin-bottom: 3px;
+			width: 70%;
+		}
+
+		.manage-purchase__detail,
+		.manage-purchase__detail-label {
+			height: 25px;
 		}
 
 		.manage-purchase__settings-link {
@@ -54,6 +60,14 @@
 
 		.manage-purchase__title {
 			width: 60%;
+		}
+
+		@include breakpoint( ">660px" ) {
+			.manage-purchase__detail,
+			.manage-purchase__detail-label {
+				height: 40px;
+				width: auto;
+			}
 		}
 	}
 }
