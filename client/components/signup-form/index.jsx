@@ -25,6 +25,7 @@ import notices from 'notices'
 import Notice from 'notices/notice'
 import LoggedOutForm from 'signup/logged-out-form'
 import formState from 'lib/form-state'
+import i18n from 'lib/mixins/i18n'
 
 const VALIDATION_DELAY_AFTER_FIELD_CHANGES = 1500,
 	debug = debugModule( 'calypso:signup-form:form' );
@@ -317,6 +318,33 @@ export default React.createClass( {
 		)
 	},
 
+	getTermsOfServiceUrl() {
+		const locale = i18n.getLocaleSlug();
+
+		switch ( locale ) {
+			case 'pt-br':
+				return 'https://br.wordpress.com/tos/';
+			case 'es':
+			case 'de':
+			case 'fr':
+			case 'he':
+			case 'ja':
+			case 'it':
+			case 'nl':
+			case 'ru':
+			case 'tr':
+			case 'id':
+			case 'zh-cn':
+			case 'zh-tw':
+			case 'ko':
+			case 'ar':
+			case 'sv':
+				return 'https://' + locale + '.wordpress.com/tos/';
+		}
+
+		return 'https://en.wordpress.com/tos/';
+	},
+
 	termsOfServiceLink() {
 		return (
 			<p className='signup-form__terms-of-service-link'>{
@@ -325,7 +353,7 @@ export default React.createClass( {
 					{
 						components: {
 							a: <a
-								href="https://en.wordpress.com/tos/"
+								href={ this.getTermsOfServiceUrl() }
 								onClick={ this.handleOnClickTos }
 								target="_blank" />
 						}
